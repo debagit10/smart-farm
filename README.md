@@ -14,7 +14,7 @@ This is live link of the platform [click here](https://project-manager-wine.verc
 
 # How to run the project
 
-1. **Fork the repository**: For the [Nithub Smart Farm](https://github.com/debagit10/project-management) project to be on your own github account.
+1. **Fork the repository**: For the [Nithub Smart Farm](https://github.com/debagit10/smart-farm) project to be on your own github account.
 2. **Clone the repository**: Clone the forked repository to your local machine by running the following command on your terminal: `git clone https://github.com/example-user/example-repo.git`. Replace example-user with your github username and example-repo with the forked repository name.
 3. **Create a new branch**: Create a new branch to work on your desired features using the following command: `git checkout -b new-branch-name`. Replace new-branch-name with your desired branch name.
 4. **Install dependencies**: Navigate to the project folder on your terminal and install the dependencies using the following command: `npm install`.

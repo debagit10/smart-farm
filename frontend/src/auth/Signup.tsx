@@ -29,7 +29,7 @@ const Signup = () => {
               Create an account to get started
             </Typography>
 
-            <div className="flex flex-col gap-3 mt-7">
+            <div className="flex flex-col gap-3 mt-7 mx-5">
               <TextField
                 variant="filled"
                 label="First name"
@@ -117,19 +117,19 @@ const Signup = () => {
               />
             </div>
 
-            <div className="flex flex-col mt-11">
+            <div className="flex flex-col mt-11  mx-5">
               <CustomButton variant="contained" disableElevation>
                 Sign Up
               </CustomButton>
             </div>
 
-            <div className="flex items-center mt-3.5">
+            <div className="flex items-center mt-3.5 mx-5">
               <hr className="flex-1 border-t border-[#747574]" />
               <span className="px-2">or</span>
               <hr className="flex-1 border-t border-[#747574]" />
             </div>
 
-            <div className="flex flex-col mt-3.5">
+            <div className="flex flex-col mt-3.5  mx-5">
               <CustomButton
                 variant="contained"
                 disableElevation

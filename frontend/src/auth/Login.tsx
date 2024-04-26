@@ -29,7 +29,7 @@ const Login = () => {
               Login to access your Smart farm
             </Typography>
 
-            <div className="flex flex-col gap-3 mt-7">
+            <div className="flex flex-col gap-3 mt-7  mx-5">
               <TextField
                 variant="filled"
                 label="Email"
@@ -66,25 +66,25 @@ const Login = () => {
               />
             </div>
 
-            <div className="mt-3 flex justify-start">
+            <div className="mt-3 flex justify-start  mx-6">
               <Typography className="text-[#30D42B] hover:cursor-pointer hover:underline">
                 Forgot password?
               </Typography>
             </div>
 
-            <div className="flex flex-col mt-20">
+            <div className="flex flex-col mt-20  mx-5">
               <CustomButton variant="contained" disableElevation>
                 Log in
               </CustomButton>
             </div>
 
-            <div className="flex items-center mt-3.5">
+            <div className="flex items-center mt-3.5  mx-5">
               <hr className="flex-1 border-t border-[#747574]" />
               <span className="px-2">or</span>
               <hr className="flex-1 border-t border-[#747574]" />
             </div>
 
-            <div className="flex flex-col mt-3.5">
+            <div className="flex flex-col mt-3.5  mx-5">
               <CustomButton
                 variant="contained"
                 disableElevation

@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const CustomButton = styled(Button)({
@@ -13,6 +14,8 @@ const Signup = () => {
       color: "white",
     },
   });
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-white flex justify-center">
@@ -32,30 +35,85 @@ const Signup = () => {
                 label="First name"
                 type="text"
                 size="small"
+                className="bg-[#F5F6F5]"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                InputLabelProps={{
+                  sx: {
+                    "&.Mui-focused": {
+                      color: "#30D42B",
+                    },
+                  },
+                }}
               />
               <TextField
                 variant="filled"
                 label="Last name"
                 type="text"
                 size="small"
+                className="bg-[#F5F6F5]"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                InputLabelProps={{
+                  sx: {
+                    "&.Mui-focused": {
+                      color: "#30D42B",
+                    },
+                  },
+                }}
               />
               <TextField
                 variant="filled"
                 label="Farm name"
                 type="text"
                 size="small"
+                className="bg-[#F5F6F5]"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                InputLabelProps={{
+                  sx: {
+                    "&.Mui-focused": {
+                      color: "#30D42B",
+                    },
+                  },
+                }}
               />
               <TextField
                 variant="filled"
                 label="Email"
                 type="email"
                 size="small"
+                className="bg-[#F5F6F5]"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                InputLabelProps={{
+                  sx: {
+                    "&.Mui-focused": {
+                      color: "#30D42B",
+                    },
+                  },
+                }}
               />
               <TextField
                 variant="filled"
                 label="Password"
                 type="password"
                 size="small"
+                className="bg-[#F5F6F5]"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                InputLabelProps={{
+                  sx: {
+                    "&.Mui-focused": {
+                      color: "#30D42B",
+                    },
+                  },
+                }}
               />
             </div>
 
@@ -94,7 +152,10 @@ const Signup = () => {
             <div>
               <Typography variant="body1" className="pt-2 text-[#747574]">
                 Have an account?{" "}
-                <span className="text-[#30D42B] hover:cursor-pointer hover:underline">
+                <span
+                  className="text-[#30D42B] hover:cursor-pointer hover:underline"
+                  onClick={() => navigate("/login")}
+                >
                   Login
                 </span>
               </Typography>

@@ -73,7 +73,11 @@ const Login = () => {
             </div>
 
             <div className="flex flex-col mt-20  mx-5">
-              <CustomButton variant="contained" disableElevation>
+              <CustomButton
+                variant="contained"
+                disableElevation
+                onClick={() => navigate("/onboarding")}
+              >
                 Log in
               </CustomButton>
             </div>

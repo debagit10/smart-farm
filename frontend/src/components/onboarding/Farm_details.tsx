@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, TextField, Chip, Stack } from "@mui/material";
-import { IoIosAdd } from "react-icons/io";
 import AddIcon from "@mui/icons-material/Add";
 
 const FarmDetails = () => {

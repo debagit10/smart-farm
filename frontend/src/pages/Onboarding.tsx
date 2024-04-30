@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MobileStepper, Button, styled, Typography } from "@mui/material";
+import { MobileStepper, Button, styled, Chip } from "@mui/material";
 
 import FarmDetails from "../components/onboarding/Farm_details";
 import Checkout from "../components/onboarding/Checkout";
@@ -35,7 +35,6 @@ const Onboarding = () => {
     },
     {
       desription: <Checkout />,
-      button: "Next",
     },
     {
       desription: <Validate />,
@@ -48,26 +47,42 @@ const Onboarding = () => {
   return (
     <div className="bg-white flex justify-center">
       <div className="m-5 w-[46rem] h-[46rem] bg-[#DFE1DE] rounded-[4rem]">
-        <div className="flex justify-start ml-10 mt-10">
+        {/* <div className="flex justify-start ml-10 mt-10">
           <Typography variant="body2">Onboarding...</Typography>
-        </div>
+        </div> */}
 
         <div className="   w-[100%] ">
           <div className="flex flex-col justify-center">
-            <div>{steps[activeStep].desription}</div>
+            <div className="mt-10">{steps[activeStep].desription}</div>
 
-            <div className="flex flex-col">
-              <div className="flex justify-center my-5">
-                <CustomButton
-                  onClick={handleNext}
-                  variant="contained"
-                  disableElevation
-                  className="md:w-80 w-60"
-                >
-                  {steps[activeStep].button}
-                </CustomButton>
+            {activeStep != 2 ? (
+              <div className="flex flex-col">
+                <div className="flex justify-center my-5">
+                  <CustomButton
+                    onClick={handleNext}
+                    variant="contained"
+                    disableElevation
+                    className="md:w-80 w-60"
+                  >
+                    {steps[activeStep].button}
+                  </CustomButton>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex justify-center mt-5">
+                <Chip
+                  onClick={handleNext}
+                  label="I've sent the money"
+                  size="small"
+                  style={{
+                    padding: "1rem",
+                    backgroundColor: "transparent",
+                    border: "1px #A6A9A5 solid",
+                  }}
+                  className="hover:cursor-pointer"
+                />
+              </div>
+            )}
 
             <div className="flex justify-center">
               <MobileStepper

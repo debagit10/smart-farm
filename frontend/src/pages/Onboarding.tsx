@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MobileStepper, Button, styled, Chip } from "@mui/material";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import FarmDetails from "../components/onboarding/Farm_details";
 import Checkout from "../components/onboarding/Checkout";
@@ -11,6 +12,9 @@ const Onboarding = () => {
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+  const handleBack = () => {
+    setActiveStep((currActiveStep) => currActiveStep - 1);
   };
 
   const CustomButton = styled(Button)({
@@ -47,9 +51,17 @@ const Onboarding = () => {
   return (
     <div className="bg-white flex justify-center">
       <div className="m-5 w-[46rem] h-[46rem] bg-[#DFE1DE] rounded-[4rem]">
-        {/* <div className="flex justify-start ml-10 mt-10">
-          <Typography variant="body2">Onboarding...</Typography>
-        </div> */}
+        {activeStep != 0 && (
+          <div className="flex justify-start ml-10 mt-10">
+            <Button
+              onClick={handleBack}
+              className="text-[#30D42B]"
+              style={{ color: "#30D42B" }}
+            >
+              <IoMdArrowRoundBack style={{ fontSize: "1.5rem" }} />
+            </Button>
+          </div>
+        )}
 
         <div className="   w-[100%] ">
           <div className="flex flex-col justify-center">

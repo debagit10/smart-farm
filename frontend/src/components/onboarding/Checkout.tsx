@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Stack, Chip } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import { GoHome } from "react-icons/go";
 import { FiCopy } from "react-icons/fi";
 

@@ -52,7 +52,7 @@ const Onboarding = () => {
     <div className="bg-white flex justify-center">
       <div className="m-5 w-[46rem] h-[46rem] bg-[#DFE1DE] rounded-[4rem]">
         {activeStep != 0 && (
-          <div className="flex justify-start ml-10 mt-10">
+          <div className="flex justify-start ml-10 mt-5">
             <Button
               onClick={handleBack}
               className="text-[#30D42B]"
@@ -63,13 +63,13 @@ const Onboarding = () => {
           </div>
         )}
 
-        <div className="   w-[100%] ">
+        <div className="w-[100%] ">
           <div className="flex flex-col justify-center">
-            <div className="mt-10">{steps[activeStep].desription}</div>
+            <div className="mt-5">{steps[activeStep].desription}</div>
 
             {activeStep != 2 ? (
               <div className="flex flex-col">
-                <div className="flex justify-center my-5">
+                <div className="flex justify-center ">
                   <CustomButton
                     onClick={handleNext}
                     variant="contained"

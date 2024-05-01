@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack, Divider } from "@mui/material";
 import { GoHome } from "react-icons/go";
 import { FiCopy } from "react-icons/fi";
 
@@ -15,8 +15,8 @@ const Checkout = () => {
         </Typography>
       </div>
 
-      <div className="flex justify-center my-16 mx-5">
-        <Stack spacing={4}>
+      <div className="flex justify-center mt-16 mx-5">
+        <Stack spacing={2}>
           <Stack direction="row" spacing={25}>
             <div>Logo</div>
             <div>
@@ -44,6 +44,8 @@ const Checkout = () => {
             </Typography>
           </div>
 
+          <Divider variant="middle" />
+
           <Stack spacing={28} direction="row">
             <div className="flex flex-col">
               <Typography variant="caption" className="text-[#A6A9A5]">
@@ -57,6 +59,8 @@ const Checkout = () => {
               <FiCopy />
             </div>
           </Stack>
+
+          <Divider variant="middle" />
 
           <Stack spacing={32} direction="row">
             <div className="flex flex-col">
@@ -72,10 +76,12 @@ const Checkout = () => {
             </div>
           </Stack>
 
+          <Divider variant="middle" />
+
           <div className="flex justify-center">
             <div className="flex flex-col">
               <Typography variant="subtitle2" className="font-black">
-                Use tihs account for the transfer
+                Use this account for the transfer
               </Typography>
 
               <div className="flex justify-center mt-3">

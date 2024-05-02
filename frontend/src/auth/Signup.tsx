@@ -6,13 +6,18 @@ import axios from "axios";
 
 const Signup = () => {
   const [user, setUser] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [farmName, setFarmName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const data = {
-    firstName: "jon",
-    lastName: "doe",
-    farmName: "doe Farm",
-    email: "alex6@gmailcom",
-    password: "1234",
+    firstName,
+    lastName,
+    farmName,
+    email,
+    password,
   };
 
   const signup = async () => {
@@ -77,6 +82,7 @@ const Signup = () => {
                     },
                   },
                 }}
+                onChange={(e) => setFirstName(e.target.value)}
               />
               <TextField
                 variant="filled"
@@ -94,6 +100,7 @@ const Signup = () => {
                     },
                   },
                 }}
+                onChange={(e) => setLastName(e.target.value)}
               />
               <TextField
                 variant="filled"
@@ -111,6 +118,7 @@ const Signup = () => {
                     },
                   },
                 }}
+                onChange={(e) => setFarmName(e.target.value)}
               />
               <TextField
                 variant="filled"
@@ -128,6 +136,7 @@ const Signup = () => {
                     },
                   },
                 }}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="filled"
@@ -145,6 +154,7 @@ const Signup = () => {
                     },
                   },
                 }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 

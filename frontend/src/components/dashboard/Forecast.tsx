@@ -1,11 +1,52 @@
 import { Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiDroplet } from "react-icons/fi";
 import { WiRain } from "react-icons/wi";
 import { PiSunHorizon } from "react-icons/pi";
 import { GoSun } from "react-icons/go";
+import axios from "axios";
 
 const Forecast = () => {
+  const [latitude, setLatitude] = useState<any>();
+  const [longitude, setLongitude] = useState<any>();
+  const [error, setError] = useState("");
+  const [weather, setWeather] = useState("");
+
+  const getLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+          setError("");
+        },
+
+        (error) => {
+          setError(error.message);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by your browser.");
+    }
+  };
+
+  const getWeather = async () => {
+    try {
+      const response = await axios.get(
+        `https://smart-farm-ubl9.onrender.com/api/weather-data?lat=${latitude}&lon=${longitude}`
+      );
+      console.log(response.data.list);
+      setWeather(response.data.list);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+
+    getWeather();
+  }, []); // Empty dependency array to run only once
   return (
     <div className="bg-[#E7E8E6] rounded-[16px]">
       <Stack spacing={0.5} className="p-5">

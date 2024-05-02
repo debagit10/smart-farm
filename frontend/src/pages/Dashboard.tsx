@@ -11,10 +11,10 @@ const Dashboard = () => {
   const [latitude, setLatitude] = useState<any>();
   const [longitude, setLongitude] = useState<any>();
   const [error, setError] = useState("");
+  const [weather, setWeather] = useState("");
 
   const getLocation = () => {
     if ("geolocation" in navigator) {
-      // Get the user's current position
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLatitude(position.coords.latitude);
@@ -37,6 +37,7 @@ const Dashboard = () => {
         `https://smart-farm-ubl9.onrender.com/api/weather-data?lat=${latitude}&lon=${longitude}`
       );
       console.log(response.data.list);
+      setWeather(response.data.list);
     } catch (error) {
       console.log(error);
     }

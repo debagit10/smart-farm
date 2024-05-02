@@ -8,7 +8,7 @@ import { GoSun } from "react-icons/go";
 const Forecast = () => {
   return (
     <div className="bg-[#E7E8E6] rounded-[16px]">
-      <Stack spacing={2} className="p-5">
+      <Stack spacing={0.5} className="p-5">
         <Stack spacing={0.5}>
           <Stack spacing={1} direction="row">
             <Typography variant="h3">24 C</Typography>

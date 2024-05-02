@@ -4,7 +4,7 @@ import { Stack } from "@mui/material";
 import Forecast from "../components/dashboard/Forecast";
 import Rainfall from "../components/dashboard/Rainfall";
 import Insights from "../components/dashboard/Insights";
-import Moisture from "../components/dashboard/Moisture";
+//import Moisture from "../components/dashboard/Moisture";
 
 const Dashboard = () => {
   return (
@@ -16,10 +16,9 @@ const Dashboard = () => {
               <div>
                 <Forecast />
               </div>
-              <div>
-                <Moisture />
-              </div>
+              <div></div>
             </Stack>
+
             <div>
               <Rainfall />
             </div>

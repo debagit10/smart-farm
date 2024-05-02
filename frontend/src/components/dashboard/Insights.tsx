@@ -3,7 +3,7 @@ import React from "react";
 
 const Insights = () => {
   return (
-    <div className="bg-[#E7E8E6] rounded-[16px] w-[251px] h-[764px] p-3 ">
+    <div className="bg-[#E7E8E6] rounded-[16px] w-[251px]  p-3 ">
       <Typography className="p-3 text-[#30D42B]">Notifications</Typography>
 
       <Stack spacing={1}>

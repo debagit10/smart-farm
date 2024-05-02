@@ -2,8 +2,28 @@ import React from "react";
 import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+  const data = {
+    email: "jackson@gmail.com",
+    password: "123456",
+  };
+
+  const login = async () => {
+    const config = { headers: { "Content-type": "application/json" } };
+    try {
+      const response = await axios.post(
+        "https://smart-farm-ubl9.onrender.com/api/login",
+        data,
+        config
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const CustomButton = styled(Button)({
     backgroundColor: "#30D42B",
     borderColor: "#30D42B",
@@ -76,7 +96,7 @@ const Login = () => {
               <CustomButton
                 variant="contained"
                 disableElevation
-                onClick={() => navigate("/onboarding")}
+                onClick={login}
               >
                 Log in
               </CustomButton>

@@ -4,7 +4,6 @@ import {
   Box,
   CssBaseline,
   Drawer,
-  //IconButton,
   Toolbar,
   Typography,
   Stack,
@@ -23,7 +22,7 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({ children }) => {
   const navigate = useNavigate();
-  const drawerWidth = 240;
+  const drawerWidth = 277;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -62,6 +61,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
                 color: "#8E8F8E",
                 "&:hover": { color: "#30D42B", backgroundColor: "#DFE1DE" },
               }}
+              onClick={() => navigate("/dashboard")}
             >
               <Icon sx={{ fontSize: "20px" }}>
                 <TbReportAnalytics />
@@ -74,6 +74,9 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
               sx={{
                 color: "#8E8F8E",
                 "&:hover": { color: "#30D42B", backgroundColor: "#DFE1DE" },
+              }}
+              onClick={() => {
+                navigate("/management");
               }}
             >
               <Icon sx={{ fontSize: "20px" }}>
@@ -88,6 +91,9 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
                 color: "#8E8F8E",
                 "&:hover": { color: "#30D42B", backgroundColor: "#DFE1DE" },
               }}
+              onClick={() => {
+                navigate("/profile");
+              }}
             >
               <Icon sx={{ fontSize: "20px" }}>
                 <CiUser />
@@ -100,6 +106,9 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
               sx={{
                 color: "#8E8F8E",
                 "&:hover": { color: "#30D42B", backgroundColor: "#DFE1DE" },
+              }}
+              onClick={() => {
+                navigate("/support");
               }}
             >
               <Icon sx={{ fontSize: "20px" }}>
@@ -124,7 +133,11 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
         </div>
       </Drawer>
 
-      <Box component="main" sx={{ flexGrow: 1, backgroundColor: "#DFE1DE" }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, backgroundColor: "#DFE1DE" }}
+        className="md:h-[100vh]"
+      >
         <Toolbar />
         <div>{children}</div>
       </Box>

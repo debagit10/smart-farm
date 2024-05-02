@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Login = () => {
   const data = {
-    email: "jackson@gmail.com",
-    password: "123456",
+    email: "test@gmail.com",
+    password: "1234",
   };
 
   const login = async () => {

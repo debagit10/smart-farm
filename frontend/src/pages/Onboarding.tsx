@@ -67,7 +67,7 @@ const Onboarding = () => {
           <div className="flex flex-col justify-center">
             <div className="mt-5">{steps[activeStep].desription}</div>
 
-            {activeStep != 2 ? (
+            {activeStep != 0 && (
               <div className="flex flex-col">
                 <div className="flex justify-center ">
                   <CustomButton
@@ -79,20 +79,6 @@ const Onboarding = () => {
                     {steps[activeStep].button}
                   </CustomButton>
                 </div>
-              </div>
-            ) : (
-              <div className="flex justify-center mt-5">
-                <Chip
-                  onClick={handleNext}
-                  label="I've sent the money"
-                  size="small"
-                  style={{
-                    padding: "1rem",
-                    backgroundColor: "transparent",
-                    border: "1px #A6A9A5 solid",
-                  }}
-                  className="hover:cursor-pointer"
-                />
               </div>
             )}
 

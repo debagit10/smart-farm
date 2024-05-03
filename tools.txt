@@ -1,0 +1,21 @@
+javascript 
+tailwind css
+material ui
+redux for state management
+typescript
+mui icons
+
+components to use from mui:
+-input field with a variant of filled
+-mobile stepper with custom dots
+-button
+-static datetime picker
+    -static time picker
+    -date calender
+    -digital clock
+-divider
+-list? maybe
+-linearprogress
+
+
+still looking for a good chart package

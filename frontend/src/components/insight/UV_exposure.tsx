@@ -4,7 +4,11 @@ import { GoSun } from "react-icons/go";
 import { PiSunHorizon } from "react-icons/pi";
 import { WiCloudy } from "react-icons/wi";
 
-const UV_exposure = () => {
+interface UVExposureProps {
+  cloud: number;
+}
+
+const UV_exposure: React.FC<UVExposureProps> = ({ cloud }) => {
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] w-[274px] ">
       <Stack spacing={2} className="p-5">
@@ -15,17 +19,9 @@ const UV_exposure = () => {
               <PiSunHorizon />
             </div>
           </div>
-          <Stack spacing={1} direction="row">
-            <Typography variant="h5">24 C</Typography>
-            <div className="p-1 bg-[#DFE1DE]  text-xl rounded-full">
-              <GoSun />
-            </div>
-          </Stack>
-          <Typography className="text-[#696A68]" variant="subtitle2">
-            Tuesday, April 23, 2024
-          </Typography>
+
           <Typography className="text-[#696A68]" variant="caption">
-            Temperature
+            Metrics:
           </Typography>
         </Stack>
 
@@ -55,7 +51,7 @@ const UV_exposure = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Cloud cover
             </Typography>
-            <Typography variant="subtitle1">10%</Typography>
+            <Typography variant="subtitle1">{cloud}%</Typography>
           </div>
         </div>
 

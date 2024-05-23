@@ -3,14 +3,18 @@ import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../Env";
+import { LoadingButton } from "@mui/lab";
+import { useCookies } from "react-cookie";
 
 const Signup = () => {
-  const [user, setUser] = useState("");
+  const [cookie, setCookies, removeCookie] = useCookies();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [farmName, setFarmName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const data = {
     firstName,
@@ -23,17 +27,19 @@ const Signup = () => {
   const signup = async () => {
     const config = { headers: { "Content-type": "application/json" } };
     try {
+      setLoading(true);
       const response = await axios.post(
-        "https://smart-farm-ubl9.onrender.com/api/register",
+        `${API_URL}/api/register`,
         data,
         config
       );
       console.log(response.data);
-      setUser(response.data.data);
+
       if (response.data.message === "success") {
-        navigate("/onboarding");
-        const userString = JSON.stringify(user);
-        localStorage.setItem("userDetails", userString);
+        navigate("/dashboard");
+        setCookies("email", response.data.data.email);
+        setCookies("farm", response.data.data.farmName);
+        setCookies("id", response.data.data._id);
       }
     } catch (error) {
       console.log(error);
@@ -159,13 +165,27 @@ const Signup = () => {
             </div>
 
             <div className="flex flex-col mt-11  mx-5">
-              <CustomButton
-                variant="contained"
-                disableElevation
-                onClick={signup}
-              >
-                Sign Up
-              </CustomButton>
+              {loading ? (
+                <div className="flex justify-center">
+                  <LoadingButton
+                    loading
+                    loadingIndicator="Signing up…"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    Fetch data
+                  </LoadingButton>
+                </div>
+              ) : (
+                <CustomButton
+                  variant="contained"
+                  disableElevation
+                  onClick={signup}
+                >
+                  Sign Up
+                </CustomButton>
+              )}
             </div>
 
             <div className="flex items-center mt-3.5 mx-5">

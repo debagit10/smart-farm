@@ -1,11 +1,20 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
-import { GoSun } from "react-icons/go";
 import { MdOutlineWater } from "react-icons/md";
 import { PiWind } from "react-icons/pi";
 import { WiCloudy } from "react-icons/wi";
 
-const Harvest_timing = () => {
+interface HarvestProps {
+  moisture: number;
+  windSpeed: number;
+  cloud: number;
+}
+
+const Harvest_timing: React.FC<HarvestProps> = ({
+  moisture,
+  windSpeed,
+  cloud,
+}) => {
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] w-[274px]">
       <Stack spacing={2} className="p-5">
@@ -13,18 +22,12 @@ const Harvest_timing = () => {
           <div className="">
             <Typography variant="h4">Harvest timing</Typography>
           </div>
-          <Stack spacing={1} direction="row">
-            <Typography variant="h5">24 C</Typography>
-            <div className="p-1 bg-[#DFE1DE]  text-xl rounded-full">
-              <GoSun />
-            </div>
-          </Stack>
-          <Typography className="text-[#696A68]" variant="subtitle2">
-            Tuesday, April 23, 2024
-          </Typography>
-          <Typography className="text-[#696A68]" variant="caption">
-            Temperature
-          </Typography>
+
+          <div className="mt-8">
+            <Typography className="text-[#696A68] " variant="caption">
+              Metrics:
+            </Typography>
+          </div>
         </Stack>
 
         <div className="flex gap-2">
@@ -38,7 +41,7 @@ const Harvest_timing = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Moisture level
             </Typography>
-            <Typography variant="subtitle1">35%</Typography>
+            <Typography variant="subtitle1">{moisture}%</Typography>
           </div>
         </div>
 
@@ -53,7 +56,7 @@ const Harvest_timing = () => {
             <Typography variant="caption" className="text-[#696A68]">
               WindSpeed
             </Typography>
-            <Typography variant="subtitle1">3m/s</Typography>
+            <Typography variant="subtitle1">{windSpeed}m/s</Typography>
           </div>
         </div>
 
@@ -68,7 +71,7 @@ const Harvest_timing = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Cloud cover
             </Typography>
-            <Typography variant="subtitle1">10%</Typography>
+            <Typography variant="subtitle1">{cloud}%</Typography>
           </div>
         </div>
 

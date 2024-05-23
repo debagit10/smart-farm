@@ -1,24 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../Env";
+import { LoadingButton } from "@mui/lab";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [cookie, setCookies, removeCookie] = useCookies();
+
   const data = {
-    email: "test@gmail.com",
-    password: "1234",
+    email,
+    password,
   };
 
   const login = async () => {
     const config = { headers: { "Content-type": "application/json" } };
     try {
-      const response = await axios.post(
-        "https://smart-farm-ubl9.onrender.com/api/login",
-        data,
-        config
-      );
-      console.log(response.data);
+      setLoading(true);
+      const response = await axios.post(`${API_URL}/api/login`, data, config);
+      setCookies("email", response.data.data.email);
+      setCookies("farm", response.data.data.farmName);
+      setCookies("id", response.data.data._id);
+      if (response.data.message === "success") {
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +76,7 @@ const Login = () => {
                     },
                   },
                 }}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="filled"
@@ -83,6 +94,7 @@ const Login = () => {
                     },
                   },
                 }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -93,13 +105,27 @@ const Login = () => {
             </div>
 
             <div className="flex flex-col mt-20  mx-5">
-              <CustomButton
-                variant="contained"
-                disableElevation
-                onClick={login}
-              >
-                Log in
-              </CustomButton>
+              {loading ? (
+                <div className="flex justify-center">
+                  <LoadingButton
+                    loading
+                    loadingIndicator="Please wait…"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    Fetch data
+                  </LoadingButton>
+                </div>
+              ) : (
+                <CustomButton
+                  variant="contained"
+                  disableElevation
+                  onClick={login}
+                >
+                  Log in
+                </CustomButton>
+              )}
             </div>
 
             <div className="flex items-center mt-3.5  mx-5">

@@ -1,56 +1,76 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import Container from "../components/Container";
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import Forecast from "../components/dashboard/Forecast";
 import Rainfall from "../components/dashboard/Rainfall";
 import Insights from "../components/dashboard/Insights";
 import axios from "axios";
+import { API_URL } from "../Env";
+import { API_KEY } from "../Env";
+import AddFarm from "../components/dashboard/AddFarm";
+import FieldList from "../components/dashboard/FieldList";
+import Typography from "@mui/material/Typography/Typography";
 //import Moisture from "../components/dashboard/Moisture";
 
 const Dashboard = () => {
+  const [cookie, setCookies, removeCookie] = useCookies();
   const [latitude, setLatitude] = useState<any>();
   const [longitude, setLongitude] = useState<any>();
-  const [error, setError] = useState("");
-  const [weather, setWeather] = useState("");
+  const [weather, setWeather] = useState();
 
-  const getLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
-          setError("");
-        },
+  const address = "Bariga, Lagos";
 
-        (error) => {
-          setError(error.message);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by your browser.");
+  const handleGeocode = async () => {
+    const apiKey = "663d4146bfd0d665803991qai48a38d";
+    const url = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
+
+    try {
+      const response = await axios.get(url);
+
+      if (response.data[0].display_name) {
+        setLatitude(response.data[0].lat);
+        setLongitude(response.data[0].lon);
+
+        setCookies("lat", latitude);
+        setCookies("lon", longitude);
+      } else {
+        console.log("Address not found");
+      }
+    } catch (error) {
+      console.error("Error fetching coordinates:", error);
     }
   };
 
-  const getWeather = async () => {
-    try {
-      const response = await axios.get(
-        `https://smart-farm-ubl9.onrender.com/api/weather-data?lat=${latitude}&lon=${longitude}`
-      );
-      console.log(response.data.list);
-      setWeather(response.data.list);
-    } catch (error) {
-      console.log(error);
+  const getCurrentWeather = async () => {
+    if (longitude && latitude) {
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+        const response = await axios.get(url);
+        setWeather(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
-    getLocation();
-
-    getWeather();
-  }, []); // Empty dependency array to run only once
+    handleGeocode();
+    getCurrentWeather();
+  });
 
   return (
     <Container>
+      <div className="flex justify-end">
+        <div className="mt-4">
+          <Typography className="text-[#424242]" variant="caption">
+            Select field/farm:
+          </Typography>
+        </div>
+
+        <FieldList />
+        <AddFarm />
+      </div>
       <div className="px-10  flex">
         <div style={{ flexGrow: 1 }}>
           <Stack spacing={2}>

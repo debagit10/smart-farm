@@ -4,7 +4,43 @@ import { GoSun } from "react-icons/go";
 import { MdOutlineWater } from "react-icons/md";
 import { FiDroplet } from "react-icons/fi";
 
-const Irrigation = () => {
+interface IrrigationProps {
+  temperature: number;
+  humidity: number;
+  windSpeed: number;
+}
+
+const calculateEvapotranspiration = ({
+  temperature,
+  humidity,
+  windSpeed,
+}: IrrigationProps): number => {
+  // Simplified Hargreaves equation
+  const a = 0.0023;
+  const b = 17.8;
+
+  // Simplified Hargreaves equation
+  let eto = a * (temperature + b) * Math.sqrt(temperature);
+
+  // Adjust for humidity
+  eto = eto * (1 - humidity / 100);
+
+  // Adjust for wind speed (simplified)
+  const windAdjustment = windSpeed * 0.1; // Simplified adjustment factor
+  const adjustedEto = eto + windAdjustment;
+
+  return adjustedEto;
+};
+
+const Irrigation: React.FC<IrrigationProps> = ({
+  temperature,
+  humidity,
+  windSpeed,
+}) => {
+  const etParams = { temperature, humidity, windSpeed };
+  const evapotranspirationRate = calculateEvapotranspiration(etParams);
+  console.log(temperature, humidity, windSpeed);
+
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] w-[274px]">
       <Stack spacing={2} className="p-5">
@@ -15,17 +51,9 @@ const Irrigation = () => {
               <FiDroplet />
             </div>
           </div>
-          <Stack spacing={1} direction="row">
-            <Typography variant="h5">24 C</Typography>
-            <div className="p-1 bg-[#DFE1DE]  text-xl rounded-full">
-              <GoSun />
-            </div>
-          </Stack>
-          <Typography className="text-[#696A68]" variant="subtitle2">
-            Tuesday, April 23, 2024
-          </Typography>
+
           <Typography className="text-[#696A68]" variant="caption">
-            Temperature
+            Metrics:
           </Typography>
         </Stack>
 
@@ -40,7 +68,7 @@ const Irrigation = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Moisture level
             </Typography>
-            <Typography variant="subtitle1">35%</Typography>
+            <Typography variant="subtitle1">{etParams.humidity}%</Typography>
           </div>
         </div>
 
@@ -55,7 +83,9 @@ const Irrigation = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Evapotranspiration Rates
             </Typography>
-            <Typography variant="subtitle1">6mm/day</Typography>
+            <Typography variant="subtitle1">
+              {evapotranspirationRate.toFixed(2)} mm/day
+            </Typography>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import {
   Box,
   CssBaseline,
@@ -21,8 +22,16 @@ interface ContainerProps {
 }
 
 const Container: React.FC<ContainerProps> = ({ children }) => {
+  const [cookie, setCookies, removeCookie] = useCookies();
   const navigate = useNavigate();
   const drawerWidth = 277;
+
+  const logOut = () => {
+    removeCookie("email");
+    removeCookie("id");
+    removeCookie("farm");
+    navigate("/login");
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -123,6 +132,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
                 color: "#8E8F8E",
                 "&:hover": { color: "#30D42B", backgroundColor: "#DFE1DE" },
               }}
+              onClick={logOut}
             >
               <Icon sx={{ fontSize: "20px" }}>
                 <TbLogout2 />
@@ -138,7 +148,6 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
         sx={{ flexGrow: 1, backgroundColor: "#DFE1DE" }}
         className="md:h-[100vh]"
       >
-        <Toolbar />
         <div>{children}</div>
       </Box>
     </Box>

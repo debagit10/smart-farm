@@ -11,48 +11,57 @@ import {
 import { Stack, Typography } from "@mui/material";
 import { WiRain } from "react-icons/wi";
 import axios from "axios";
+import { API_URL } from "../../Env";
+import { useCookies } from "react-cookie";
 
 const Rainfall = () => {
-  const [latitude, setLatitude] = useState<any>();
-  const [longitude, setLongitude] = useState<any>();
-  const [error, setError] = useState("");
-  const [weather, setWeather] = useState("");
+  const [cookie, setCookies, removeCookie] = useCookies();
 
-  const getLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
-          setError("");
-        },
+  const latitude = cookie.lat;
+  const longitude = cookie.lon;
 
-        (error) => {
-          setError(error.message);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by your browser.");
-    }
-  };
+  const [graph, setGraph] = useState<any>();
+  const graphData: any = [];
 
-  const getWeather = async () => {
+  const xAxis: any = [];
+  const yAxis: any = [];
+
+  const config = { headers: { "Content-type": "application/json" } };
+
+  const getWeatherForecast = async () => {
     try {
       const response = await axios.get(
-        `https://smart-farm-ubl9.onrender.com/api/weather-data?lat=${latitude}&lon=${longitude}`
+        `${API_URL}/api/weather-data?lat=${latitude}&lon=${longitude}`,
+        { headers: config.headers }
       );
-      console.log(response.data.list);
-      setWeather(response.data.list);
+
+      setGraph(response.data.list);
+
+      for (let i = 0; i < 6; i++) {
+        graphData.push(graph[i]);
+        const timestamp = graphData[i].dt;
+
+        const date = new Date(timestamp * 1000);
+
+        const hours = date.getUTCHours();
+        const minutes = date.getUTCMinutes();
+        const seconds = date.getUTCSeconds();
+
+        // Format the time as hh:mm:ss
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
+        xAxis.push(formattedTime);
+
+        yAxis.push(graphData[i].main.temp);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getLocation();
+    getWeatherForecast();
+  });
 
-    getWeather();
-  }, []);
   const getCurrentTime = () => {
     const now = new Date();
     return now;
@@ -75,6 +84,7 @@ const Rainfall = () => {
 
   const data = generateData();
   const yTicks = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] mr-20">
       <div className="">

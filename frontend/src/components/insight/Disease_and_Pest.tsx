@@ -3,9 +3,13 @@ import React from "react";
 import { MdOutlineWater } from "react-icons/md";
 import { MdOutlineControlCamera } from "react-icons/md";
 import { PiWind } from "react-icons/pi";
-import { GoSun } from "react-icons/go";
 
-const Disease_and_Pest = () => {
+interface DiseaseProps {
+  humidity: number;
+  windSpeed: number;
+}
+
+const Disease_and_Pest: React.FC<DiseaseProps> = ({ humidity, windSpeed }) => {
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] w-[274px] ">
       <Stack spacing={2} className="p-5">
@@ -17,17 +21,8 @@ const Disease_and_Pest = () => {
             </div>
           </div>
 
-          <Stack spacing={1} direction="row">
-            <Typography variant="h5">24 C</Typography>
-            <div className="p-1 bg-[#DFE1DE]  text-xl rounded-full">
-              <GoSun />
-            </div>
-          </Stack>
-          <Typography className="text-[#696A68]" variant="subtitle2">
-            Tuesday, April 23, 2024
-          </Typography>
           <Typography className="text-[#696A68]" variant="caption">
-            Temperature
+            Metrics:
           </Typography>
         </Stack>
 
@@ -42,7 +37,7 @@ const Disease_and_Pest = () => {
             <Typography variant="caption" className="text-[#696A68]">
               Humidity
             </Typography>
-            <Typography variant="subtitle1">20%</Typography>
+            <Typography variant="subtitle1">{humidity}%</Typography>
           </div>
         </div>
 
@@ -57,7 +52,7 @@ const Disease_and_Pest = () => {
             <Typography variant="caption" className="text-[#696A68]">
               WindSpeed
             </Typography>
-            <Typography variant="subtitle1">3m/s</Typography>
+            <Typography variant="subtitle1">{windSpeed}m/s</Typography>
           </div>
         </div>
 

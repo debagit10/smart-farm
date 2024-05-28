@@ -21,6 +21,10 @@ const Dashboard = () => {
 
   const address = "Bariga, Lagos";
 
+  const farmer = cookie.email;
+  const farmName = cookie.farm;
+  const farmAddress = cookie.farmAddress;
+
   const handleGeocode = async () => {
     const apiKey = "663d4146bfd0d665803991qai48a38d";
     const url = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
@@ -74,11 +78,17 @@ const Dashboard = () => {
       <div className="px-10  flex">
         <div style={{ flexGrow: 1 }}>
           <Stack spacing={2}>
-            <Stack spacing={2} direction="row">
+            <Stack spacing={30} direction="row">
+              <div>
+                <Stack direction="column" spacing={2}>
+                  <Typography variant="h4">{farmer}</Typography>
+                  <Typography variant="body1">{farmName}</Typography>
+                  <Typography variant="caption">{farmAddress}</Typography>
+                </Stack>
+              </div>
               <div>
                 <Forecast />
               </div>
-              <div></div>
             </Stack>
 
             <div>

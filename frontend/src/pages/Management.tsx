@@ -6,7 +6,7 @@ import Harvest_timing from "../components/insight/Harvest_timing";
 import Disease_and_Pest from "../components/insight/Disease_and_Pest";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { API_URL } from "../Env";
+import { API_URL, WEATHER_STACK_API } from "../Env";
 
 interface WeatherData {
   main: {
@@ -23,6 +23,7 @@ interface WeatherData {
 
 const Management = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [uvIndex, setUvIndex] = useState();
 
   const [cookie, setCookies, removeCookie] = useCookies();
 
@@ -48,12 +49,26 @@ const Management = () => {
     }
   };
 
+  const getUV_Index = async () => {
+    try {
+      const weatherstackApiUrl = `http://api.weatherstack.com/current?access_key=${WEATHER_STACK_API}&query=${latitude},${longitude}`;
+
+      const uvResponse = await axios.get(weatherstackApiUrl);
+      console.log(uvResponse.data.current);
+      setUvIndex(uvResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCurrentWeather();
+    getUV_Index();
   });
+
   return (
     <Container>
-      {weatherData && (
+      {weatherData && uvIndex && (
         <div className="flex flex-col md:flex-row gap-5">
           <div className="m-5">
             <Irrigation
@@ -63,7 +78,7 @@ const Management = () => {
             />
           </div>
           <div className="m-5">
-            <UV_exposure cloud={weatherData.clouds.all} />
+            <UV_exposure cloud={weatherData.clouds.all} uvi={uvIndex} />
           </div>
           <div className="m-5">
             <Harvest_timing

@@ -48,21 +48,8 @@ const Management = () => {
     }
   };
 
-  // const getUV_Index = async () => {
-  //   try {
-  //     const weatherstackApiUrl = `http://api.weatherstack.com/current?access_key=${WEATHER_STACK_API}&query=${latitude},${longitude}`;
-
-  //     const uvResponse = await axios.get(weatherstackApiUrl);
-  //     console.log(uvResponse.data.current);
-  //     setUvIndex(uvResponse.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   useEffect(() => {
     getCurrentWeather();
-    //getUV_Index();
   });
 
   return (

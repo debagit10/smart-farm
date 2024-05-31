@@ -23,7 +23,6 @@ interface WeatherData {
 
 const Management = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [uvIndex, setUvIndex] = useState();
 
   const [cookie, setCookies, removeCookie] = useCookies();
 
@@ -49,26 +48,26 @@ const Management = () => {
     }
   };
 
-  const getUV_Index = async () => {
-    try {
-      const weatherstackApiUrl = `http://api.weatherstack.com/current?access_key=${WEATHER_STACK_API}&query=${latitude},${longitude}`;
+  // const getUV_Index = async () => {
+  //   try {
+  //     const weatherstackApiUrl = `http://api.weatherstack.com/current?access_key=${WEATHER_STACK_API}&query=${latitude},${longitude}`;
 
-      const uvResponse = await axios.get(weatherstackApiUrl);
-      console.log(uvResponse.data.current);
-      setUvIndex(uvResponse.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     const uvResponse = await axios.get(weatherstackApiUrl);
+  //     console.log(uvResponse.data.current);
+  //     setUvIndex(uvResponse.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     getCurrentWeather();
-    getUV_Index();
+    //getUV_Index();
   });
 
   return (
     <Container>
-      {weatherData && uvIndex && (
+      {weatherData && (
         <div className="flex flex-col md:flex-row gap-5">
           <div className="m-5">
             <Irrigation
@@ -78,7 +77,7 @@ const Management = () => {
             />
           </div>
           <div className="m-5">
-            <UV_exposure cloud={weatherData.clouds.all} uvi={uvIndex} />
+            <UV_exposure cloud={weatherData.clouds.all} />
           </div>
           <div className="m-5">
             <Harvest_timing

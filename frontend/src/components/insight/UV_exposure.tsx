@@ -6,10 +6,9 @@ import { WiCloudy } from "react-icons/wi";
 
 interface UVExposureProps {
   cloud: number;
-  uvi: number;
 }
 
-const UV_exposure: React.FC<UVExposureProps> = ({ cloud, uvi }) => {
+const UV_exposure: React.FC<UVExposureProps> = ({ cloud }) => {
   return (
     <div className="bg-[#E7E8E6] rounded-[16px] w-[274px] ">
       <Stack spacing={2} className="p-5">
@@ -37,7 +36,7 @@ const UV_exposure: React.FC<UVExposureProps> = ({ cloud, uvi }) => {
             <Typography variant="caption" className="text-[#696A68]">
               UV Index
             </Typography>
-            <Typography variant="subtitle1">{uvi}</Typography>
+            <Typography variant="subtitle1">UVI</Typography>
           </div>
         </div>
 

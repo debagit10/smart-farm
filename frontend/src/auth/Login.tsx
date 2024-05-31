@@ -3,7 +3,7 @@ import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../Env";
+// import { API_URL } from "../Env";
 import { LoadingButton } from "@mui/lab";
 import { useCookies } from "react-cookie";
 
@@ -22,7 +22,7 @@ const Login = () => {
     const config = { headers: { "Content-type": "application/json" } };
     try {
       setLoading(true);
-      const response = await axios.post(`${API_URL}/api/login`, data, config);
+      const response = await axios.post(`/api/login`, data, config);
       setCookies("email", response.data.data.email);
       setCookies("farm", response.data.data.farmName);
       setCookies("id", response.data.data._id);

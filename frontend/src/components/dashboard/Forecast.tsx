@@ -5,7 +5,7 @@ import { WiRain } from "react-icons/wi";
 import { PiSunHorizon } from "react-icons/pi";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { API_URL } from "../../Env";
+// import { API_URL } from "../../Env";
 
 interface WeatherData {
   main: {
@@ -70,7 +70,7 @@ const Forecast = () => {
   const getCurrentWeather = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/weather-data?lat=${latitude}&lon=${longitude}`,
+        `/api/weather-data?lat=${latitude}&lon=${longitude}`,
         { headers: config.headers }
       );
 

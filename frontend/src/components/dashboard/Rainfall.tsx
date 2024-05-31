@@ -11,7 +11,7 @@ import {
 import { Stack, Typography } from "@mui/material";
 import { WiRain } from "react-icons/wi";
 import axios from "axios";
-import { API_URL } from "../../Env";
+// import { API_URL } from "../../Env";
 import { useCookies } from "react-cookie";
 
 const Rainfall = () => {
@@ -31,7 +31,7 @@ const Rainfall = () => {
   const getWeatherForecast = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/weather-data?lat=${latitude}&lon=${longitude}`,
+        `/api/weather-data?lat=${latitude}&lon=${longitude}`,
         { headers: config.headers }
       );
 

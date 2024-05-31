@@ -3,7 +3,7 @@ import { Typography, TextField, Button, styled } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../Env";
+// import { API_URL } from "../Env";
 import { LoadingButton } from "@mui/lab";
 import { useCookies } from "react-cookie";
 
@@ -29,7 +29,7 @@ const Signup = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${API_URL}/api/register`,
+        `/api/register`,
         data,
         config
       );

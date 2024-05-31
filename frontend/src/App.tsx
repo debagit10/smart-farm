@@ -10,8 +10,13 @@ import Suuport from "./pages/Suuport";
 import Controls from "./pages/Controls";
 import Management from "./pages/Management";
 //import Login from "./auth/Login";
+import axios from "axios";
 
 function App() {
+
+
+  axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_API_URL;
+
   return (
     <div>
       <Routes>

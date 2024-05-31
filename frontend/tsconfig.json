@@ -24,7 +24,10 @@
 
     "sourceMap": true,
     "outDir": "./dist",
-    "removeComments": true
+    "removeComments": true,
+
+      "types": ["vite/client"]
+    
   },
   "include": ["src", "src/auth"]
 }

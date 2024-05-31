@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { API_URL } from "../../Env";
+// import { API_URL } from "../../Env";
 import { LoadingButton } from "@mui/lab";
 
 const AddFarm = () => {
@@ -50,7 +50,7 @@ const AddFarm = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${API_URL}/api/farm-detail`,
+        `/api/farm-detail`,
         data,
         config
       );

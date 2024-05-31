@@ -6,7 +6,7 @@ import Harvest_timing from "../components/insight/Harvest_timing";
 import Disease_and_Pest from "../components/insight/Disease_and_Pest";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { API_URL, WEATHER_STACK_API } from "../Env";
+// import { API_URL, WEATHER_STACK_API } from "../Env";
 
 interface WeatherData {
   main: {
@@ -35,7 +35,7 @@ const Management = () => {
   const getCurrentWeather = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/weather-data?lat=${latitude}&lon=${longitude}`,
+        `/api/weather-data?lat=${latitude}&lon=${longitude}`,
         { headers: config.headers }
       );
 
